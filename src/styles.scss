@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import url(https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+// @import "~angular-notifier/styles";
+
+@import "~@angular/material/theming";
+@include mat-core();
+
+html, body { height: 100%; margin: 0 }
+* {  font-family: 'Bree Serif', serif; }
+
+body {
+  background-color: #535353 !important;
+  -webkit-transition: background-color 300ms linear;
+  -ms-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
+  $theming-material-components-primary: mat-palette($mat-blue);
+  $theming-material-components-accent: mat-palette($mat-deep-purple, A200, A100, A400);
+  $theming-material-components-warn: mat-palette($mat-red);
+  $theming-material-components-theme: mat-dark-theme(
+    $theming-material-components-primary,
+    $theming-material-components-accent,
+    $theming-material-components-warn
+  );
+  @include angular-material-theme($theming-material-components-theme);
+}
