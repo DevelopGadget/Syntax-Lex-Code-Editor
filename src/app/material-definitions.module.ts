@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -15,14 +16,16 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FlexLayoutModule
   ],
   exports: [
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FlexLayoutModule
   ]
 })
 export class MaterialDefinitionsModule { }

@@ -7,10 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialDefinitionsModule } from './material-definitions.module';
 import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule, MONACO_PATH } from '@materia-ui/ngx-monaco-editor';
+import { EditorTypingComponent } from './components/editor-typing/editor-typing.component';
+import { EditorConsoleComponent } from './components/editor-console/editor-console.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditorTypingComponent,
+    EditorConsoleComponent
   ],
   imports: [
     BrowserModule,

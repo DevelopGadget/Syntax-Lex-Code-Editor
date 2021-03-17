@@ -1,6 +1,13 @@
-<mat-toolbar>
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
   <span>Analizador Lexico</span>
+  <button mat-button (click)="buildText()">
+    <span>Compilar</span>
+    <mat-icon>handyman</mat-icon>
+  </button>
 </mat-toolbar>
-<div class="container">
-	<ngx-monaco-editor class="editor" #editor [options]="editorOptions" [(ngModel)]="code" (init)="editorInit($event)"></ngx-monaco-editor>
+
+<div class="container" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <app-editor-typing class="editor"></app-editor-typing>
+  <app-editor-console class="console"></app-editor-console>
 </div>
+
