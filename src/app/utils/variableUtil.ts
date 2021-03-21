@@ -23,7 +23,7 @@ export class VariableUtil {
     const splited = line.toString().split(' ').filter(tes => tes.trim() !== '');
     if (!reg.test(line)) {
 
-      this.createSpan('color-omited', 'Compilando linea ' + (index + 1));
+      this.createSpan('color-compiled', 'Compilando linea ' + (index + 1));
 
       if (!/\s*;\s*$/.test(line)) errors += 'Error falta ";"\n';
 

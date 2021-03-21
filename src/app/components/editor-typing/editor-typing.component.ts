@@ -25,6 +25,7 @@ export class EditorTypingComponent implements OnInit {
     minimap: {
       enabled: false,
     },
+    fontSize: 25,
     mouseWheelZoom: true,
     renderIndentGuides: false,
     selectOnLineNumbers: true,
@@ -50,11 +51,11 @@ export class EditorTypingComponent implements OnInit {
       monaco.languages.setMonarchTokensProvider('PseudoCodigo', {
         tokenizer: {
           root: [
+            [/^(.*)#(.*)$/, 'comments'],
             [/'(?:[^\\]|\\.)*?(?:'|$)/, 'string'],
             [/(?:function|Inicio|Fin)\b/, 'keyword'],
             [/(?:declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino)\b/, 'declarators'],
             [/(?:envia|recibe|llamar)\b/, 'methods'],
-            [/(\d[\(\)\-]?)\b/, 'numbers']
           ]
         }
       });
@@ -72,7 +73,7 @@ export class EditorTypingComponent implements OnInit {
           { token: 'keyword', foreground: 'cb7732' },
           { token: 'declarators', foreground: 'e26eb2' },
           { token: 'methods', foreground: '49d76f' },
-          { token: 'numbers', foreground: '59abf7' },
+          { token: 'comments', foreground: '6f6d64' },
         ],
         colors: {}
       });

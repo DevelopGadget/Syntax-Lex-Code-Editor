@@ -48,6 +48,7 @@ export class AppComponent {
   }
 
   validateLine(line: string, index: number) {
+    line = line.replace(/^(\s*)#(.*)$/, '');
     if (line.toString().trim() !== '') {
       const splited = line.toString().split(' ').filter(tes => tes.trim() !== '');
       switch (splited[0]) {
