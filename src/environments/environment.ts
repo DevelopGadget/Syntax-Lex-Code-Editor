@@ -3,27 +3,5 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  palabrasReservadas: [
-    'Inicio',
-    'Si',
-    'Entonces',
-    'Sino',
-    'FinSi',
-    'MQ',
-    'FinMQ',
-    'Para',
-    'FinPara',
-    'Haga',
-    'Declare',
-    'Envia',
-    'Recibe',
-    'Llamar',
-    'Fin',
-    'Entero',
-    'Real',
-    'Cadena',
-    'Logico',
-    'Fecha'
-  ]
+  production: false
 };
