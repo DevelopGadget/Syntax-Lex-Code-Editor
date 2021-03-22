@@ -19,6 +19,7 @@ export class VariableUtil {
 
     line = line.replace(/(\s+)?,(\s+)?/g, ',');
 
+
     const matchVariables = reg.exec(line);
 
     if (!matchVariables) {
@@ -27,7 +28,7 @@ export class VariableUtil {
 
       if (!/\s*;\s*$/.test(line)) errors += 'Error falta ";"\n';
 
-      if (/^(?:(?!(entero|cadena|logico|fecha|real)).)*$/.test(line)) errors += 'Error no contiene un tipo de dato valido\n';
+      if (!/(\s+)(entero|cadena|logico|fecha|real)/.test(line)) errors += 'Error no contiene un tipo de dato valido\n';
 
     } else {
 
@@ -64,10 +65,11 @@ export class VariableUtil {
   }
 
   validateOptionsVariable(variable: string): string {
+    variable = variable.trim();
     if (/^(?:(?!([a-zA-Z]))(.*))*$/.test(variable)) return 'Error nombre de variable no inicia con una letra "' + variable + '"\n';
     else if (/(?:(?!(\w+)).+)$/.test(variable)) return 'Error nombre de variable no debe contener caracteres especiales "' + variable + '"\n';
     else if (/^([a-zA-Z])(\s+)(\w+)$/.test(variable)) return 'Error nombre no debe contener espacios "' + variable + '"\n';
-    else if (/(declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino|function|Inicio|Fin|envia|recibe|llamar)$/.test(variable)) return 'Error nombre de variable no debe contener palabras reservadas "' + variable + '"\n';
+    else if (/^(declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino|function|Inicio|Fin|envia|recibe|llamar)$/.test(variable)) return 'Error nombre de variable no debe contener palabras reservadas "' + variable + '"\n';
     else if (!variable || variable.length <= 0 || variable.length > 16) return 'Error nombre de variable tiene que ser mínimo 1 y máximo 16 "' + variable + '"\n';
     else return null;
   }
