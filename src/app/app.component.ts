@@ -29,20 +29,10 @@ export class AppComponent {
         this.renderer.removeChild(this.consoleComponent.consoleCode.nativeElement, child);
       }
       const lines = this.monacoComponent.code.split('\n');
+      if(!/\b(Inicio)\b/.test(this.monacoComponent.code)) this.createSpan('color-red', '[fecha] El código no contiene la sentencia de "Inicio" ');
+      if(!/\b(Fin)\b/.test(this.monacoComponent.code)) this.createSpan('color-red', '[fecha] El código no contiene la sentencia de "Fin" ');
       for (let index = 0; index < lines.length; index++) {
-
-        if (index === 0) {
-          this.validateIncio(lines);
-          continue;
-        }
-
-        if (index === (lines.length - 1)) {
-          this.validateFin(lines);
-          continue;
-        }
-
         this.validateLine(lines[index], index);
-
       }
     }
   }
@@ -57,31 +47,14 @@ export class AppComponent {
           break;
       }
     } else {
-      this.createSpan('color-omited', 'Se omite la linea ' + (index + 1));
+      this.createSpan('color-omited', '[fecha] Se omite la linea ' + (index + 1));
     }
   }
-
-  validateIncio(lines: string[]) {
-    if (lines[0].trim() !== 'Inicio') {
-      this.createSpan('color-red', 'La linea 1 debe ser "Inicio" ');
-    } else {
-      this.createSpan('color-blue', 'Compilación exitosa de la linea 1');
-    }
-  }
-
-  validateFin(lines: string[]) {
-    if (lines[lines.length - 1].trim() !== 'Fin') {
-      this.createSpan('color-red', 'La ultima linea ' + lines.length + ' debe ser "Fin" ');
-    } else {
-      this.createSpan('color-blue', 'Compilación exitosa de la linea ' + lines.length);
-    }
-  }
-
-
 
   createSpan = (color: string = 'color-blue', text: string): void => {
     const span: HTMLSpanElement = this.renderer.createElement('span');
     span.className = color + ' span-pre';
+    text = text.replace('[fecha]', `[${(new Date()).toLocaleString()}]`)
     span.innerHTML = text;
     this.renderer.appendChild(this.consoleComponent.consoleCode.nativeElement, span);
   }
