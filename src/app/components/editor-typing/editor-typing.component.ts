@@ -56,6 +56,7 @@ export class EditorTypingComponent implements OnInit {
             [/(?:function|Inicio|Fin)\b/, 'keyword'],
             [/(?:declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino)\b/, 'declarators'],
             [/(?:envia|recibe|llamar)\b/, 'methods'],
+            [/[-+/*=<>!]+/, 'operator']
           ]
         }
       });
@@ -73,7 +74,8 @@ export class EditorTypingComponent implements OnInit {
           { token: 'keyword', foreground: 'cb7732' },
           { token: 'declarators', foreground: 'e26eb2' },
           { token: 'methods', foreground: '49d76f' },
-          { token: 'comments', foreground: '6f6d64' },
+          { token: 'comments', foreground: '6f6d64', fontStyle: 'italic underline' },
+          { token: 'operator', foreground: '038cfc' },
         ],
         colors: {}
       });
