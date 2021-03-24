@@ -83,6 +83,8 @@ export class EditorTypingComponent implements OnInit {
     });
   }
 
+  getModel = () => this.monacoComponent.model;
+
   getCode() {
     const default_code = `
 Inicio

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTreeModule } from '@angular/material/tree';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -17,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTreeModule
   ],
   exports: [
     MatToolbarModule,
@@ -25,7 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTreeModule
   ]
 })
 export class MaterialDefinitionsModule { }

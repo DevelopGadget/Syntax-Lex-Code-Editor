@@ -2,14 +2,18 @@ export class VariableUtil {
 
   private static _instance: VariableUtil;
 
-  public static Instance(createSpan: Function): VariableUtil {
-    return this._instance || (this._instance = new this(createSpan));
+  public static Instance(createSpan: Function, setModelMaker: Function, getModelMaker: Function): VariableUtil {
+    return this._instance || (this._instance = new this(createSpan, setModelMaker, getModelMaker));
   }
 
   createSpan: Function;
+  getModelMaker: Function;
+  setModelMaker: Function;
 
-  constructor(createSpan: Function) {
+  constructor(createSpan: Function, setModelMaker: Function, getModelMaker: Function) {
     this.createSpan = createSpan;
+    this.setModelMaker = setModelMaker;
+    this.getModelMaker = getModelMaker;
   }
 
   validateVariable(line: string, index: number) {
@@ -26,18 +30,25 @@ export class VariableUtil {
 
       this.createSpan('color-compiled', '[fecha] Compilando linea ' + (index + 1));
 
-      if (!/\s*;\s*$/.test(line)) errors += '[fecha] Error falta ";"\n';
+      if (!/\s*;\s*$/.test(line)) {
+        errors += '[fecha] Error falta ";"\n';
+        this.setModelMaker(this.getModelMaker(index + 1, 'Error falta ";"'));
+      }
 
-      if (!/(\s+)(entero|cadena|logico|fecha|real)/.test(line)) errors += '[fecha] Error no contiene un tipo de dato valido\n';
+      if (!/(\s+)(entero|cadena|logico|fecha|real)/.test(line)){
+        errors += '[fecha] Error no contiene un tipo de dato valido\n';
+        this.setModelMaker(this.getModelMaker(index + 1, 'Error no contiene un tipo de dato valido'));
+      }
 
     } else {
 
       if (!matchVariables[2]) {
         errors += 'Error no hay una variable asignada\n';
         this.createSpan('color-compiled', '[fecha] Compilando linea ' + (index + 1));
+        this.setModelMaker(this.getModelMaker(index + 1, 'Error no hay una variable asignada'));
       }
       else {
-        const error = this.validateAllVariable(matchVariables[2]);
+        const error = this.validateAllVariable(matchVariables[2], index);
         if (error) {
           this.createSpan('color-compiled', '[fecha] Compilando linea ' + (index + 1));
           errors += error;
@@ -54,12 +65,13 @@ export class VariableUtil {
 
   }
 
-  validateAllVariable(splited: string): string {
+  validateAllVariable(splited: string, index: number): string {
     if (splited.toString().includes(',')) {
-      const error = this.validateMultiVariable(splited);
+      const error = this.validateMultiVariable(splited, index);
       return error;
     } else {
       const opts = this.validateOptionsVariable(splited);
+      if(opts) this.setModelMaker(this.getModelMaker(index + 1, opts.replace('[fecha]', '')));
       return opts;
     }
   }
@@ -74,12 +86,15 @@ export class VariableUtil {
     else return null;
   }
 
-  validateMultiVariable(variables: string): string {
+  validateMultiVariable(variables: string, index: number): string {
     const splitedVar = variables.toString().trim().split(',');
     var errors: string = '';
     splitedVar.forEach(item => {
       const opts = this.validateOptionsVariable(item);
-      if (opts) errors += opts;
+      if (opts){
+        errors += opts;
+        this.setModelMaker(this.getModelMaker(index + 1, opts.replace('[fecha]', '')));
+      }
     });
 
     return errors;
