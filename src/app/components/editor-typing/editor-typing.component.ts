@@ -53,9 +53,9 @@ export class EditorTypingComponent implements OnInit {
           root: [
             [/^(.*)#(.*)$/, 'comments'],
             [/'(?:[^\\]|\\.)*?(?:'|$)/, 'string'],
-            [/(?:function|Inicio|Fin)\b/, 'keyword'],
-            [/(?:declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino)\b/, 'declarators'],
-            [/(?:envia|recibe|llamar)\b/, 'methods'],
+            [/\b(?:function|Inicio|Fin)\b/, 'keyword'],
+            [/\b(?:declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino)\b/, 'declarators'],
+            [/\b(?:envia|recibe|llamar)\b/, 'methods'],
             [/[-+/*=<>!]+/, 'operator']
           ]
         }
@@ -83,23 +83,26 @@ export class EditorTypingComponent implements OnInit {
     });
   }
 
+  getModel = () => this.monacoComponent.model;
+
   getCode() {
-    return (
-            `Inicio
-        declare a,1b entero;
-        declare x real;
-        declare i real;
-        recibe(x);
-        a = 5;
-        b = 2;
-        si x >= (b + 1c) entonces
-            # a = a +1
-            envia ( 'HOLA MUNDO');
-        sino
-            envia ( 'ESTO ES UNA PRUEBA');
-        finsi;
-      Fin`
-    );
+    const default_code = `
+Inicio
+    declare a,1b entero;
+    declare x real;
+    declare i real;
+    recibe(x);
+    a = 5;
+    b = 2;
+    si x >= (b + 1c) entonces
+        # a = a +1
+        envia ('HOLA MUNDO');
+    sino
+        envia ('ESTO ES UNA PRUEBA');
+    finsi;
+Fin
+        `
+    return default_code;
   }
 
 }

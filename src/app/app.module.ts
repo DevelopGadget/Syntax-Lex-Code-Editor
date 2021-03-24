@@ -9,12 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule, MONACO_PATH } from '@materia-ui/ngx-monaco-editor';
 import { EditorTypingComponent } from './components/editor-typing/editor-typing.component';
 import { EditorConsoleComponent } from './components/editor-console/editor-console.component';
+import { TreeWordsComponent } from './components/tree-words/tree-words.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorTypingComponent,
-    EditorConsoleComponent
+    EditorConsoleComponent,
+    TreeWordsComponent
   ],
   imports: [
     BrowserModule,
