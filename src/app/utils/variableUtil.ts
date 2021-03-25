@@ -23,7 +23,6 @@ export class VariableUtil {
 
     line = line.replace(/(\s+)?,(\s+)?/g, ',');
 
-
     const matchVariables = reg.exec(line);
 
     if (!matchVariables) {

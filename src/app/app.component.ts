@@ -36,6 +36,8 @@ export class AppComponent {
       }
       this.makers = [];
       monaco.editor.setModelMarkers(this.monacoComponent.getModel(), 'test', []);
+      this.treeComponent.TreeData = [];
+      this.treeComponent.groupMatched();
       const lines = this.monacoComponent.code.split('\n');
       if (!/\b(Inicio)\b/.test(this.monacoComponent.code)) this.createSpan('color-red', '[fecha] El código no contiene la sentencia de "Inicio" ');
       if (!/\b(Fin)\b/.test(this.monacoComponent.code)) this.createSpan('color-red', '[fecha] El código no contiene la sentencia de "Fin" ');

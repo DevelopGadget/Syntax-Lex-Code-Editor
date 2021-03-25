@@ -53,7 +53,7 @@ export class EditorTypingComponent implements OnInit {
           root: [
             [/^(.*)#(.*)$/, 'comments'],
             [/'(?:[^\\]|\\.)*?(?:'|$)/, 'string'],
-            [/\b(?:function|Inicio|Fin)\b/, 'keyword'],
+            [/\b(?:Inicio|Fin)\b/, 'keyword'],
             [/\b(?:declare|entero|cadena|logico|fecha|real|entonces|mq|finmq|para|finpara|haga|recibe|si|finsi|sino)\b/, 'declarators'],
             [/\b(?:envia|recibe|llamar)\b/, 'methods'],
             [/[-+/*=<>!]+/, 'operator']
