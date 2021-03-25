@@ -34,7 +34,7 @@ export class VariableUtil {
         this.setModelMaker(this.getModelMaker(index + 1, 'Error falta ";"'));
       }
 
-      if (!/(\s+)(entero|cadena|logico|fecha|real)/.test(line)){
+      if (!/\w*(entero|cadena|logico|fecha|real);\w*$/.test(line)){
         errors += '[fecha] Error no contiene un tipo de dato valido\n';
         this.setModelMaker(this.getModelMaker(index + 1, 'Error no contiene un tipo de dato valido'));
       }
