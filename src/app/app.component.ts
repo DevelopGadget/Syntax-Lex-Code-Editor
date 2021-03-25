@@ -55,6 +55,7 @@ export class AppComponent {
     if (line.toString().trim() !== '') {
       const splited = line.toString().split(' ').filter(tes => tes.trim() !== '');
       if(/^(entero|cadena|logico|fecha|real|entonces)/.test(splited[0])) {
+        this.createSpan('color-compiled', '[fecha] Compilando linea ' + (index + 1));
         this.createSpan('color-red', '[fecha] sentencia no valida');
         this.setModelMaker(this.getModelMaker(index + 1, 'sentencia no valida'));
       }

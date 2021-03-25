@@ -94,7 +94,7 @@ Inicio
     recibe(x);
     a = 5;
     b = 2;
-    si x >= (b + 1c) entonces
+    si x >= (b + a) entonces
         # a = a +1
         envia ('HOLA MUNDO');
     sino
