@@ -54,10 +54,7 @@ export class AppComponent {
     line = line.replace(/^(\s*)#(.*)$/, '');
     if (line.toString().trim() !== '') {
       const splited = line.toString().split(' ').filter(tes => tes.trim() !== '');
-      if(/^(entero|cadena|logico|fecha|real|entonces)$/) {
-        this.createSpan('color-red', '[fecha] sentencia no valida');
-        this.setModelMaker(this.getModelMaker(index + 1, 'sentencia no valida'));
-      }
+
       switch (splited[0]) {
         case 'declare':
           this.variableDefinitions.validateVariable(line, index);
